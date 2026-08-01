@@ -42,7 +42,7 @@ def enrich(data: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
     matches = data["matches"]
     players = data["players"]
     squads = data["squads"]
-    lineups = data["lineups"]
+    data["lineups"]
     team_stats = data["team_stats"]
     events = data["events"]
     stages = data["stages"]

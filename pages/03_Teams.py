@@ -5,9 +5,14 @@ import streamlit as st
 
 from src import charts
 from src.page import bootstrap
-from src.ui import explain_card, page_intro, render_brand_header, render_footer, section_heading
+from src.ui import (
+    explain_card,
+    page_intro,
+    render_brand_header,
+    render_footer,
+    section_heading,
+)
 from src.utils import make_standings
-
 
 data, _ = bootstrap("Teams")
 fm = data["matches_filtered"]

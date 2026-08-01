@@ -4,9 +4,15 @@ import streamlit as st
 
 from src import charts
 from src.page import bootstrap
-from src.ui import explain_card, kpi_card, page_intro, render_brand_header, render_footer, section_heading
+from src.ui import (
+    explain_card,
+    kpi_card,
+    page_intro,
+    render_brand_header,
+    render_footer,
+    section_heading,
+)
 from src.utils import fmt_num
-
 
 data, filters = bootstrap("Overview")
 fm = data["matches_filtered"]

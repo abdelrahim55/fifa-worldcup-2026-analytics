@@ -4,7 +4,13 @@ import streamlit as st
 
 from src.page import bootstrap
 from src.sql import WAREHOUSE, list_queries, load_query, run_sql
-from src.ui import explain_card, page_intro, render_brand_header, render_footer, section_heading
+from src.ui import (
+    explain_card,
+    page_intro,
+    render_brand_header,
+    render_footer,
+    section_heading,
+)
 
 bootstrap("SQL")
 
@@ -32,7 +38,7 @@ if st.button("Run selected query", type="primary", use_container_width=True):
         result = run_sql(query)
         section_heading("Result", f"{len(result):,} rows returned from the SQL warehouse.")
         st.dataframe(result, hide_index=True, use_container_width=True)
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         st.error(f"SQL execution failed: {exc}")
 
 st.markdown('''<div class="card" style="margin-top:16px"><b>Warehouse design</b><p style="font-size:10px;color:#74818f;line-height:1.6;margin:7px 0 0"><b>Dimensions:</b> teams, players, stages, venues, referees. <b>Facts:</b> matches, player stats, team-match stats, lineups, events. <b>Analytics:</b> reusable views + CTEs + window functions + ranking + statistical comparisons.</p></div>''', unsafe_allow_html=True)

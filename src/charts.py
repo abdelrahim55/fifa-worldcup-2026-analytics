@@ -19,13 +19,13 @@ def base(fig: go.Figure, height: int | None = None) -> go.Figure:
         template="plotly_white",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(255,255,255,0)",
-        margin=dict(l=8, r=8, t=52, b=12),
-        font=dict(family="Inter", color=DARK, size=11),
-        hoverlabel=dict(bgcolor=DARK, font_color="white"),
-        title=dict(font=dict(size=16, family="Barlow Condensed", color=DARK), x=0, xanchor="left"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0, font=dict(size=9)),
-        xaxis=dict(showgrid=True, gridcolor="#eef2f5", zeroline=False),
-        yaxis=dict(showgrid=True, gridcolor="#eef2f5", zeroline=False),
+        margin={"l": 8, "r": 8, "t": 52, "b": 12},
+        font={"family": "Inter", "color": DARK, "size": 11},
+        hoverlabel={"bgcolor": DARK, "font_color": "white"},
+        title={"font": {"size": 16, "family": "Barlow Condensed", "color": DARK}, "x": 0, "xanchor": "left"},
+        legend={"orientation": "h", "yanchor": "bottom", "y": 1.02, "xanchor": "left", "x": 0, "font": {"size": 9}},
+        xaxis={"showgrid": True, "gridcolor": "#eef2f5", "zeroline": False},
+        yaxis={"showgrid": True, "gridcolor": "#eef2f5", "zeroline": False},
     )
     if height:
         fig.update_layout(height=height)
@@ -36,9 +36,9 @@ def empty(title: str, message: str = "No data for the current filters.") -> go.F
     fig = go.Figure()
     fig.update_layout(
         title=title,
-        annotations=[dict(text=message, x=.5, y=.5, xref="paper", yref="paper", showarrow=False, font=dict(size=12, color=GREY))],
-        xaxis=dict(visible=False),
-        yaxis=dict(visible=False),
+        annotations=[{"text": message, "x": .5, "y": .5, "xref": "paper", "yref": "paper", "showarrow": False, "font": {"size": 12, "color": GREY}}],
+        xaxis={"visible": False},
+        yaxis={"visible": False},
     )
     return base(fig)
 
@@ -84,7 +84,7 @@ def team_scatter(team_view: pd.DataFrame) -> go.Figure:
     if team_view.empty:
         return empty("ELO vs scoring output")
     fig = px.scatter(team_view, x="elo_rating", y="goals_per_match", size="matches_played", color="confederation", hover_name="team_name", text="fifa_code", title="ELO vs scoring output", color_discrete_sequence=[GREEN, CYAN, BLUE, GOLD, RED, DARK])
-    fig.update_traces(textposition="top center", marker=dict(line=dict(width=1, color="white")))
+    fig.update_traces(textposition="top center", marker={"line": {"width": 1, "color": "white"}})
     return base(fig)
 
 
@@ -125,6 +125,6 @@ def venue_map(venues: pd.DataFrame) -> go.Figure:
     if venues.empty:
         return empty("Tournament venues")
     fig = px.scatter_map(venues, lat="latitude", lon="longitude", hover_name="stadium_name", hover_data=["city", "country", "capacity", "elevation_meters"], size="capacity", zoom=2.8, height=500, title="Tournament venues")
-    fig.update_traces(marker=dict(color=GREEN))
+    fig.update_traces(marker={"color": GREEN})
     fig.update_layout(map_style="carto-positron")
     return fig

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src.config import PAGES
 from src.filters import FilterState
 
 

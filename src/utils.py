@@ -3,19 +3,19 @@ from __future__ import annotations
 import pandas as pd
 
 
-def fmt_num(value: float | int | None) -> str:
+def fmt_num(value: float | None) -> str:
     if value is None or pd.isna(value):
         return "—"
     return f"{value:,.0f}"
 
 
-def fmt_pct(value: float | int | None) -> str:
+def fmt_pct(value: float | None) -> str:
     if value is None or pd.isna(value):
         return "—"
     return f"{value:.1%}"
 
 
-def money(value: float | int | None) -> str:
+def money(value: float | None) -> str:
     if value is None or pd.isna(value):
         return "—"
     if value >= 1e9:
