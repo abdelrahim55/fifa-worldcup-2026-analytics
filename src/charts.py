@@ -117,7 +117,8 @@ def formation(lineups: pd.DataFrame, players: pd.DataFrame, team_id: int) -> go.
     frame = lineups[(lineups.team_id == team_id) & (lineups.is_starting_xi == 1)].merge(players[["player_id", "player_name"]], on="player_id", how="left")
     if frame.empty:
         return empty("Starting XI by tactical position")
-    positions = frame.tactical_position.value_counts().reindex(["GK", "DEF", "MID", "FWD"]).fillna(0).reset_index(); positions.columns = ["Position", "Players"]
+    positions = frame.tactical_position.value_counts().reindex(["GK", "DEF", "MID", "FWD"]).fillna(0).reset_index()
+    positions.columns = ["Position", "Players"]
     return base(px.bar(positions, x="Position", y="Players", title="Starting XI by tactical position", text="Players", color="Position", color_discrete_sequence=[GOLD, BLUE, CYAN, GREEN]))
 
 
